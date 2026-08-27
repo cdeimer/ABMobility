@@ -1,89 +1,141 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+
+interface Campaign {
+  frontmatter: {
+    title: string;
+    description: string;
+    deadline?: string;
+    target_emails: string;
+    email_subject: string;
+    email_body: string;
+  };
+}
+
+// Fetch all campaigns from markdown files
+const campaigns = Object.values(
+  import.meta.glob<Campaign>("../content/campaigns/*.md", { eager: true }),
+);
 ---
 
 <Layout>
-	<!-- Hero Section -->
-	<section class="text-center py-8">
-		<h1 class="text-4xl font-extrabold mb-4">Advocating for Safer Streets in Allston-Brighton</h1>
-		<p class="text-xl text-slate-600 max-w-2xl mx-auto">
-			We are a community-driven movement working to improve walking, rolling, biking, and transit in our neighborhood.
-		</p>
-	</section>
+  <!-- Hero Section -->
+  <section class="text-center py-8">
+    <h1 class="text-4xl font-extrabold mb-4">
+      Advocating for Safer Streets in Allston-Brighton
+    </h1>
+    <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+      We are a community-driven movement working to improve walking, rolling,
+      biking, and transit in our neighborhood.
+    </p>
+  </section>
 
-	<!-- Interactive Map Section -->
-	<section id="map" class="scroll-mt-24">
-		<div class="flex justify-between items-end mb-4">
-			<div>
-				<h2 class="text-2xl font-bold">Neighborhood Sentiment Map</h2>
-				<p class="text-slate-600">Drop a pin or draw a line to highlight areas that need improvement or are working well.</p>
-			</div>
-			<button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm">
-				Share Your Experience
-			</button>
-		</div>
-		<div class="border border-slate-200 bg-slate-100 rounded-xl h-[500px] w-full flex items-center justify-center shadow-inner">
-			<p class="text-slate-500 font-medium">[Interactive Map Component Will Go Here]</p>
-		</div>
-	</section>
+  <!-- Interactive Map Section -->
+  <section id="map" class="scroll-mt-24">
+    <div class="flex justify-between items-end mb-4">
+      <div>
+        <h2 class="text-2xl font-bold">Neighborhood Sentiment Map</h2>
+        <p class="text-slate-600">
+          Drop a pin or draw a line to highlight areas that need improvement or
+          are working well.
+        </p>
+      </div>
+      <button
+        class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm"
+      >
+        Share Your Experience
+      </button>
+    </div>
+    <div
+      class="border border-slate-200 bg-slate-100 rounded-xl h-[500px] w-full flex items-center justify-center shadow-inner"
+    >
+      <p class="text-slate-500 font-medium">
+        [Interactive Map Component Will Go Here]
+      </p>
+    </div>
+  </section>
 
-	<!-- Take Action Section -->
-	<section id="action" class="scroll-mt-24">
-		<h2 class="text-2xl font-bold mb-1">Take Action</h2>
-		<p class="text-slate-600 mb-6">Make your voice heard. Send emails to local officials regarding these ongoing campaigns.</p>
+  <!-- Take Action Section -->
+  <section id="action" class="scroll-mt-24">
+    <h2 class="text-2xl font-bold mb-1">Take Action</h2>
+    <p class="text-slate-600 mb-6">
+      Make your voice heard. Send emails to local officials regarding these
+      ongoing campaigns.
+    </p>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-			<!-- Campaign Card 1 -->
-			<div class="border border-slate-200 p-6 rounded-xl bg-white shadow-sm flex flex-col">
-				<h3 class="text-xl font-bold mb-2">Cambridge St Protected Bike Lanes</h3>
-				<p class="mb-4 flex-grow text-slate-700">The current design lacks continuous protected bike lanes. Let BTD know this is unacceptable for a major transit corridor.</p>
-				<p class="text-sm font-medium text-red-600 mb-4">Deadline for comments: October 15, 2026</p>
-				
-				<a href="mailto:btd@boston.gov?subject=Support%20for%20protected%20bike%20lanes%20on%20Cambridge%20St&body=Dear%20Boston%20Transportation%20Department%2C%0A%0AI%20am%20writing%20to%20express%20my%20strong%20support%20for%20continuous%2C%20fully%20protected%20bike%20lanes%20on%20the%20entirety%20of%20Cambridge%20Street.%20The%20current%20conditions%20are%20unsafe%20and%20discourage%20active%20transportation.%0A%0ASincerely%2C%0A%5BYour%20Name%5D%0A%5BYour%20Address%5D" class="inline-block text-center bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-					Send Pre-filled Email
-				</a>
-			</div>
-			
-			<!-- Campaign Card 2 (Placeholder) -->
-			<div class="border border-slate-200 p-6 rounded-xl bg-white shadow-sm flex flex-col">
-				<h3 class="text-xl font-bold mb-2">I-90 Allston Multimodal Project</h3>
-				<p class="mb-4 flex-grow text-slate-700">Advocate for an at-grade design that prioritizes parkland, transit access, and neighborhood connectivity over highway expansion.</p>
-				<p class="text-sm font-medium text-slate-500 mb-4">Ongoing Campaign</p>
-				
-				<a href="#" class="inline-block text-center bg-slate-100 text-slate-800 px-4 py-2 rounded-lg font-medium hover:bg-slate-200 transition-colors">
-					Learn More
-				</a>
-			</div>
-		</div>
-	</section>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {
+        campaigns.map((campaign) => (
+          <div class="border border-slate-200 p-6 rounded-xl bg-white shadow-sm flex flex-col">
+            <h3 class="text-xl font-bold mb-2">{campaign.frontmatter.title}</h3>
+            <p class="mb-4 flex-grow text-slate-700">
+              {campaign.frontmatter.description}
+            </p>
 
-	<!-- Events Section -->
-	<section id="events" class="scroll-mt-24">
-		<h2 class="text-2xl font-bold mb-1">Upcoming Events</h2>
-		<p class="text-slate-600 mb-6">Join community meetings, group rides, and neighborhood walks.</p>
+            {campaign.frontmatter.deadline && (
+              <p class="text-sm font-medium text-red-600 mb-4">
+                {campaign.frontmatter.deadline}
+              </p>
+            )}
 
-		<div class="space-y-4">
-			<div class="border border-slate-200 p-5 rounded-xl bg-white shadow-sm flex flex-col sm:flex-row sm:items-center justify-between">
-				<div>
-					<h3 class="text-lg font-bold">Allston Civic Association Monthly Meeting</h3>
-					<p class="text-slate-600 text-sm mt-1">
-						<span class="font-medium">Date:</span> September 10, 2026 @ 6:00 PM <br/>
-						<span class="font-medium">Location:</span> Honan-Allston Library / Zoom
-					</p>
-				</div>
-				<a href="#" class="mt-4 sm:mt-0 text-blue-600 font-medium hover:underline whitespace-nowrap">RSVP & Details &rarr;</a>
-			</div>
+            <a
+              href={`mailto:${campaign.frontmatter.target_emails}?subject=${encodeURIComponent(campaign.frontmatter.email_subject)}&body=${encodeURIComponent(campaign.frontmatter.email_body)}`}
+              class="inline-block text-center bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            >
+              Send Pre-filled Email
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </section>
 
-			<div class="border border-slate-200 p-5 rounded-xl bg-white shadow-sm flex flex-col sm:flex-row sm:items-center justify-between">
-				<div>
-					<h3 class="text-lg font-bold">Brighton Center Walk Audit</h3>
-					<p class="text-slate-600 text-sm mt-1">
-						<span class="font-medium">Date:</span> September 15, 2026 @ 10:00 AM <br/>
-						<span class="font-medium">Location:</span> Meet at the Brighton Center intersection
-					</p>
-				</div>
-				<a href="#" class="mt-4 sm:mt-0 text-blue-600 font-medium hover:underline whitespace-nowrap">RSVP & Details &rarr;</a>
-			</div>
-		</div>
-	</section>
+  <!-- Events Section -->
+  <section id="events" class="scroll-mt-24">
+    <h2 class="text-2xl font-bold mb-1">Upcoming Events</h2>
+    <p class="text-slate-600 mb-6">
+      Join community meetings, group rides, and neighborhood walks.
+    </p>
+
+    <div class="space-y-4">
+      <div
+        class="border border-slate-200 p-5 rounded-xl bg-white shadow-sm flex flex-col sm:flex-row sm:items-center justify-between"
+      >
+        <div>
+          <h3 class="text-lg font-bold">
+            Allston Civic Association Monthly Meeting
+          </h3>
+          <p class="text-slate-600 text-sm mt-1">
+            <span class="font-medium">Date:</span> September 10, 2026 @ 6:00 PM <br
+            />
+            <span class="font-medium">Location:</span> Honan-Allston Library / Zoom
+          </p>
+        </div>
+        <a
+          href="#"
+          class="mt-4 sm:mt-0 text-blue-600 font-medium hover:underline whitespace-nowrap"
+          >RSVP & Details &rarr;</a
+        >
+      </div>
+
+      <div
+        class="border border-slate-200 p-5 rounded-xl bg-white shadow-sm flex flex-col sm:flex-row sm:items-center justify-between"
+      >
+        <div>
+          <h3 class="text-lg font-bold">Brighton Center Walk Audit</h3>
+          <p class="text-slate-600 text-sm mt-1">
+            <span class="font-medium">Date:</span> September 15, 2026 @ 10:00 AM <br
+            />
+            <span class="font-medium">Location:</span> Meet at the Brighton Center
+            intersection
+          </p>
+        </div>
+        <a
+          href="#"
+          class="mt-4 sm:mt-0 text-blue-600 font-medium hover:underline whitespace-nowrap"
+          >RSVP & Details &rarr;</a
+        >
+      </div>
+    </div>
+  </section>
 </Layout>
