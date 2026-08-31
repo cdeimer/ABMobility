@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Map from "../components/Map.astro";
 
 interface Campaign {
   frontmatter: {
@@ -36,23 +37,12 @@ const campaigns = Object.values(
       <div>
         <h2 class="text-2xl font-bold">Neighborhood Sentiment Map</h2>
         <p class="text-slate-600">
-          Drop a pin or draw a line to highlight areas that need improvement or
-          are working well.
+          Use the tools on the map to drop a pin or draw a line highlighting areas that need improvement or are working well.
         </p>
       </div>
-      <button
-        class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm"
-      >
-        Share Your Experience
-      </button>
     </div>
-    <div
-      class="border border-slate-200 bg-slate-100 rounded-xl h-125 w-full flex items-center justify-center shadow-inner"
-    >
-      <p class="text-slate-500 font-medium">
-        [Interactive Map Component Will Go Here]
-      </p>
-    </div>
+    
+    <Map />
   </section>
 
   <!-- Take Action Section -->
