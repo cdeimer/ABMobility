@@ -62,13 +62,13 @@ import 'maplibre-gl-draw/dist/mapbox-gl-draw.css';
     }
   });
 
-  map.addControl(draw);
+  map.addControl(draw as unknown as maplibregl.IControl);
 
   // Identity management
   function getOrCreateUserIdentifier() {
     let id = localStorage.getItem('ab_user_id');
     if (!id) {
-      id = 'user_' + Math.random().toString(36).substr(2, 9);
+      id = 'user_' + Math.random().toString(36).substring(2, 11);
       localStorage.setItem('ab_user_id', id);
     }
     return id;
@@ -241,7 +241,7 @@ import 'maplibre-gl-draw/dist/mapbox-gl-draw.css';
         if (activeLines.length > 0) {
           const currentLine = activeLines[activeLines.length - 1];
           // MapboxDraw adds a moving cursor point, so 3 coordinates = 2 clicked points
-          if (currentLine && currentLine.geometry.coordinates.length >= 3) {
+          if (currentLine && (currentLine.geometry as GeoJSON.LineString).coordinates.length >= 3) {
             draw.changeMode('simple_select', { featureIds: [currentLine.id as string] });
           }
         }
@@ -250,7 +250,7 @@ import 'maplibre-gl-draw/dist/mapbox-gl-draw.css';
   });
 
   // Handle drawing creation
-  map.on('draw.create', (e) => {
+  map.on('draw.create' as any, (e: any) => {
     currentFeature = e.features[0];
     if (modal) modal.classList.remove('hidden');
   });
