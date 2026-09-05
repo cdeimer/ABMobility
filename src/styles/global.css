@@ -1,18 +1,31 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer utilities {
   .neo-brutalist {
-    @apply border-4 border-black bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+    border-width: 4px;
+    border-color: #000;
+    box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
   }
   .neo-brutalist-interactive {
-    @apply neo-brutalist transition-transform hover:-translate-y-1 hover:translate-x-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-y-2 active:-translate-x-2 active:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)];
+    border-width: 4px;
+    border-color: #000;
+    box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+    transition-property: transform, box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+  .neo-brutalist-interactive:hover {
+    transform: translate(4px, -4px);
+    box-shadow: 12px 12px 0px 0px rgba(0,0,0,1);
+  }
+  .neo-brutalist-interactive:active {
+    transform: translate(-8px, 8px);
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
   }
 }
 
 .bg-dot-pattern {
-  background-color: #fdfbf7;
-  background-image: radial-gradient(#000000 1px, transparent 1px);
+  background-color: #f4f4f0;
+  background-image: radial-gradient(circle, #9ca3af 2px, transparent 2.5px);
   background-size: 24px 24px;
 }
