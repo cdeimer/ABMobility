@@ -25,7 +25,7 @@
 }
 
 .bg-dot-pattern {
-  background-color: #f4f4f0;
-  background-image: radial-gradient(circle, #9ca3af 2px, transparent 2.5px);
+  background-color: #f5eadd;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.06) 1.5px, transparent 2px);
   background-size: 24px 24px;
 }
