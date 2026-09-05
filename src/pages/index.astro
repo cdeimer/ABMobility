@@ -21,57 +21,75 @@ const campaigns = Object.values(
 
 <Layout>
   <!-- Hero Section -->
-  <section class="text-center py-8">
-    <h1 class="text-4xl font-extrabold mb-4">
-      Allston-Brighton Active Streets
-    </h1>
-    <p class="text-xl text-slate-600 max-w-2xl mx-auto">
-      Safer streets, vibrant spaces, a connected community
-    </p>
+  <section class="neo-brutalist bg-[#ffe4e6] p-8 md:p-12 mb-16 rotate-1 relative mt-8">
+    <div class="text-center">
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-6 uppercase tracking-tight font-mono text-black leading-tight">
+        Allston-Brighton<br/>Active Streets
+      </h1>
+      <p class="text-2xl font-bold text-black max-w-2xl mx-auto bg-[#fef08a] inline-block px-4 py-2 border-2 border-black -rotate-1 mb-6">
+        Safer streets, vibrant spaces, a connected community
+      </p>
+      <p class="text-lg text-black max-w-2xl mx-auto mt-4 mb-8 font-medium bg-white p-4 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        We are a grassroots, community-driven movement working to radically improve walking, rolling, biking, and transit in our neighborhood. Get involved, share your voice, and help us transform our streets!
+      </p>
+      
+      <div class="flex flex-wrap justify-center gap-6 mt-8">
+        <a href="#map" class="neo-brutalist-interactive bg-[#bfdbfe] px-6 py-3 text-xl font-bold uppercase -rotate-2">
+          🗺️ Sentiment Map
+        </a>
+        <a href="#action" class="neo-brutalist-interactive bg-[#bbf7d0] px-6 py-3 text-xl font-bold uppercase rotate-1">
+          ✊ Take Action
+        </a>
+        <a href="#events" class="neo-brutalist-interactive bg-[#fbcfe8] px-6 py-3 text-xl font-bold uppercase -rotate-1">
+          📅 Events
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- Interactive Map Section -->
-  <section id="map" class="scroll-mt-24">
-    <div class="flex justify-between items-end mb-4">
-      <div>
-        <h2 class="text-2xl font-bold">Neighborhood Sentiment Map</h2>
-        <p class="text-slate-600">
-          Use the tools on the map to drop a pin or draw a line highlighting areas that need improvement or are working well.
-        </p>
-      </div>
+  <section id="map" class="scroll-mt-24 neo-brutalist bg-white p-6 md:p-8 mb-16 -rotate-1">
+    <div class="flex flex-col mb-6 border-b-4 border-black pb-4">
+      <h2 class="text-4xl font-extrabold font-mono uppercase bg-[#fef08a] inline-block self-start px-2 py-1 border-2 border-black rotate-1 mb-2">Sentiment Map</h2>
+      <p class="text-lg font-medium text-black">
+        Use the tools on the map to drop a pin or draw a line highlighting areas that need improvement or are working well.
+      </p>
     </div>
     
-    <Map />
+    <div class="border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-slate-100 overflow-hidden">
+      <Map />
+    </div>
   </section>
 
   <!-- Take Action Section -->
-  <section id="action" class="scroll-mt-24">
-    <h2 class="text-2xl font-bold mb-1">Take Action</h2>
-    <p class="text-slate-600 mb-6">
-      Make your voice heard. Send emails to local officials regarding these
-      ongoing campaigns.
-    </p>
+  <section id="action" class="scroll-mt-24 mb-16">
+    <div class="mb-8 text-center">
+      <h2 class="text-4xl font-extrabold font-mono uppercase bg-[#bbf7d0] inline-block px-4 py-2 border-4 border-black rotate-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Take Action</h2>
+      <p class="text-xl font-bold mt-4 text-black bg-white inline-block px-4 py-2 border-2 border-black -rotate-1">
+        Make your voice heard. Send emails to local officials regarding these ongoing campaigns.
+      </p>
+    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
-        campaigns.map((campaign) => (
-          <div class="border border-slate-200 p-6 rounded-xl bg-white shadow-sm flex flex-col">
-            <h3 class="text-xl font-bold mb-2">{campaign.frontmatter.title}</h3>
-            <p class="mb-4 grow text-slate-700">
+        campaigns.map((campaign, index) => (
+          <div class={`neo-brutalist p-6 bg-white flex flex-col ${index % 2 === 0 ? '-rotate-1' : 'rotate-1'}`}>
+            <h3 class="text-2xl font-extrabold mb-3 font-mono uppercase border-b-2 border-black pb-2">{campaign.frontmatter.title}</h3>
+            <p class="mb-6 grow text-lg font-medium">
               {campaign.frontmatter.description}
             </p>
 
             {campaign.frontmatter.deadline && (
-              <p class="text-sm font-medium text-red-600 mb-4">
-                {campaign.frontmatter.deadline}
+              <p class="text-lg font-bold bg-[#fecaca] inline-block self-start px-2 py-1 border-2 border-black mb-6 -rotate-2">
+                🚨 Deadline: {campaign.frontmatter.deadline}
               </p>
             )}
 
             <a
               href={`mailto:${campaign.frontmatter.target_emails}?subject=${encodeURIComponent(campaign.frontmatter.email_subject)}&body=${encodeURIComponent(campaign.frontmatter.email_body)}`}
-              class="inline-block text-center bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+              class="neo-brutalist-interactive inline-block text-center bg-black text-white px-6 py-3 text-lg font-bold uppercase hover:bg-slate-800"
             >
-              Send Pre-filled Email
+              Send Pre-filled Email ✉️
             </a>
           </div>
         ))
@@ -80,50 +98,43 @@ const campaigns = Object.values(
   </section>
 
   <!-- Events Section -->
-  <section id="events" class="scroll-mt-24">
-    <h2 class="text-2xl font-bold mb-1">Upcoming Events</h2>
-    <p class="text-slate-600 mb-6">
-      Join community meetings, group rides, and neighborhood walks.
-    </p>
+  <section id="events" class="scroll-mt-24 mb-16">
+    <div class="mb-8 text-center">
+      <h2 class="text-4xl font-extrabold font-mono uppercase bg-[#fbcfe8] inline-block px-4 py-2 border-4 border-black -rotate-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Upcoming Events</h2>
+      <p class="text-xl font-bold mt-4 text-black bg-white inline-block px-4 py-2 border-2 border-black rotate-1">
+        Join community meetings, group rides, and neighborhood walks.
+      </p>
+    </div>
 
-    <div class="space-y-4">
-      <div
-        class="border border-slate-200 p-5 rounded-xl bg-white shadow-sm flex flex-col sm:flex-row sm:items-center justify-between"
-      >
+    <div class="space-y-6">
+      <div class="neo-brutalist bg-[#fef08a] p-6 flex flex-col sm:flex-row sm:items-center justify-between rotate-1 hover:rotate-0 transition-transform">
         <div>
-          <h3 class="text-lg font-bold">
+          <h3 class="text-2xl font-extrabold font-mono uppercase mb-2">
             Allston Civic Association Monthly Meeting
           </h3>
-          <p class="text-slate-600 text-sm mt-1">
-            <span class="font-medium">Date:</span> September 10, 2026 @ 6:00 PM <br
-            />
-            <span class="font-medium">Location:</span> Honan-Allston Library / Zoom
+          <p class="text-black text-lg font-medium bg-white inline-block px-2 py-1 border-2 border-black">
+            <span class="font-bold">Date:</span> September 10, 2026 @ 6:00 PM <br />
+            <span class="font-bold">Location:</span> Honan-Allston Library / Zoom
           </p>
         </div>
-        <a
-          href="#"
-          class="mt-4 sm:mt-0 text-blue-600 font-medium hover:underline whitespace-nowrap"
-          >RSVP & Details &rarr;</a
-        >
+        <a href="#" class="neo-brutalist-interactive mt-6 sm:mt-0 bg-white border-2 border-black px-4 py-2 font-bold uppercase text-center self-start sm:self-auto">
+          RSVP & Details &rarr;
+        </a>
       </div>
 
-      <div
-        class="border border-slate-200 p-5 rounded-xl bg-white shadow-sm flex flex-col sm:flex-row sm:items-center justify-between"
-      >
+      <div class="neo-brutalist bg-[#bfdbfe] p-6 flex flex-col sm:flex-row sm:items-center justify-between -rotate-1 hover:rotate-0 transition-transform">
         <div>
-          <h3 class="text-lg font-bold">Brighton Center Walk Audit</h3>
-          <p class="text-slate-600 text-sm mt-1">
-            <span class="font-medium">Date:</span> September 15, 2026 @ 10:00 AM <br
-            />
-            <span class="font-medium">Location:</span> Meet at the Brighton Center
-            intersection
+          <h3 class="text-2xl font-extrabold font-mono uppercase mb-2">
+            Brighton Center Walk Audit
+          </h3>
+          <p class="text-black text-lg font-medium bg-white inline-block px-2 py-1 border-2 border-black">
+            <span class="font-bold">Date:</span> September 15, 2026 @ 10:00 AM <br />
+            <span class="font-bold">Location:</span> Meet at the Brighton Center intersection
           </p>
         </div>
-        <a
-          href="#"
-          class="mt-4 sm:mt-0 text-blue-600 font-medium hover:underline whitespace-nowrap"
-          >RSVP & Details &rarr;</a
-        >
+        <a href="#" class="neo-brutalist-interactive mt-6 sm:mt-0 bg-white border-2 border-black px-4 py-2 font-bold uppercase text-center self-start sm:self-auto">
+          RSVP & Details &rarr;
+        </a>
       </div>
     </div>
   </section>
