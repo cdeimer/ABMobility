@@ -2,7 +2,7 @@
 title: "Western Ave Protected Bike Lanes"
 # deadline: "Ongoing Campaign"
 target_emails: "chris.osgood@boston.gov, tali.robbins@boston.gov, btd@boston.gov, nick.gove@boston.gov, contactons@boston.gov"
-email_subject: "Support for At-Grade Western Ave Protected Bike Lanes"
+email_subject: "Support for Western Ave Protected Bike Lanes"
 email_body: "To the Boston Transportation Department and Streets Cabinet,\n\nI am writing to express my support for the reinstallation of protected bike lanes on Western Ave. We cannot move backwards on this important safety improvement.\n\nSincerely,\n[Your Name]\n[Your Address]"
 ---
 

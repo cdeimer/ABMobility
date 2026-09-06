@@ -87,23 +87,43 @@ const campaigns = Object.values(
               </p>
             )}
 
-            <div class="mt-auto flex flex-col gap-4 border-t-4 border-black pt-6">
-              <div class="bg-black text-white p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
-                <p class="text-sm font-bold text-[#39ff14] mb-2 uppercase tracking-wide font-mono">To:</p>
-                <div class="font-mono text-sm whitespace-pre-wrap break-words">{campaign.frontmatter.target_emails}</div>
+            <div class="mt-auto flex flex-col gap-3 border-t-4 border-black pt-6">
+              <!-- To Field -->
+              <div class="bg-black text-white p-3 md:p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
+                <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+                  <div class="text-sm font-bold text-[#39ff14] uppercase tracking-wide font-mono shrink-0 sm:w-24 pt-1 sm:pt-0.5">To:</div>
+                  <div class="font-mono text-sm whitespace-pre-wrap break-words pt-0.5 grow">{campaign.frontmatter.target_emails}</div>
+                </div>
                 <button 
-                  class="copy-btn absolute top-3 right-3 bg-black text-[#39ff14] border-2 border-[#39ff14] px-3 py-1 font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
+                  class="copy-btn absolute top-3 right-3 md:top-4 md:right-4 w-[72px] bg-black text-[#39ff14] border-2 border-[#39ff14] py-1 text-center font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
                   data-copy={campaign.frontmatter.target_emails}
                 >
                   Copy
                 </button>
               </div>
 
-              <div class="bg-black text-white p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
-                <p class="text-sm font-bold text-[#39ff14] mb-2 uppercase tracking-wide font-mono">Message:</p>
-                <div class="font-mono text-sm whitespace-pre-wrap break-words">{campaign.frontmatter.email_body}</div>
+              <!-- Subject Field -->
+              <div class="bg-black text-white p-3 md:p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
+                <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+                  <div class="text-sm font-bold text-[#39ff14] uppercase tracking-wide font-mono shrink-0 sm:w-24 pt-1 sm:pt-0.5">Subject:</div>
+                  <div class="font-mono text-sm whitespace-pre-wrap break-words pt-0.5 grow">{campaign.frontmatter.email_subject}</div>
+                </div>
                 <button 
-                  class="copy-btn absolute top-3 right-3 bg-black text-[#39ff14] border-2 border-[#39ff14] px-3 py-1 font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
+                  class="copy-btn absolute top-3 right-3 md:top-4 md:right-4 w-[72px] bg-black text-[#39ff14] border-2 border-[#39ff14] py-1 text-center font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
+                  data-copy={campaign.frontmatter.email_subject}
+                >
+                  Copy
+                </button>
+              </div>
+
+              <!-- Message Field -->
+              <div class="bg-black text-white p-3 md:p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] mt-1">
+                <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+                  <div class="text-sm font-bold text-[#39ff14] uppercase tracking-wide font-mono shrink-0 sm:w-24 pt-1 sm:pt-0.5">Message:</div>
+                  <div class="font-mono text-sm whitespace-pre-wrap break-words pt-0.5 grow">{campaign.frontmatter.email_body}</div>
+                </div>
+                <button 
+                  class="copy-btn absolute top-3 right-3 md:top-4 md:right-4 w-[72px] bg-black text-[#39ff14] border-2 border-[#39ff14] py-1 text-center font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
                   data-copy={campaign.frontmatter.email_body}
                 >
                   Copy
@@ -167,10 +187,8 @@ const campaigns = Object.values(
         navigator.clipboard.writeText(textToCopy).then(() => {
           const originalText = button.textContent;
           button.textContent = 'Copied!';
-          button.classList.add('bg-[#39ff14]', 'text-black');
           setTimeout(() => {
             button.textContent = originalText;
-            button.classList.remove('bg-[#39ff14]', 'text-black');
           }, 2000);
         });
       }
