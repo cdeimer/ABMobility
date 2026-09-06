@@ -21,7 +21,7 @@ const campaigns = Object.values(
 
 <Layout>
   <!-- Hero Section -->
-  <section class="neo-brutalist bg-[#ffe4e6] p-8 md:p-12 mb-16 rotate-1 relative mt-8">
+  <section class="neo-brutalist bg-[#ffe4e6] p-8 md:p-12 mb-16 md:rotate-1 relative mt-8">
     <div class="text-center">
       <h1 class="text-5xl md:text-7xl font-extrabold mb-6 uppercase tracking-tight font-mono text-black leading-tight">
         Allston-Brighton<br/>Active Streets
@@ -34,37 +34,23 @@ const campaigns = Object.values(
       </p>
       
       <div class="flex flex-wrap justify-center gap-6 mt-8">
-        <a href="#map" class="neo-brutalist-interactive bg-[#bfdbfe] px-6 py-3 text-xl font-bold uppercase -rotate-2">
-          🗺️ Sentiment Map
-        </a>
-        <a href="#action" class="neo-brutalist-interactive bg-[#bbf7d0] px-6 py-3 text-xl font-bold uppercase rotate-1">
+        <a href="#action" class="neo-brutalist-interactive bg-[#bbf7d0] px-6 py-3 text-xl font-bold uppercase -rotate-2">
           ✊ Take Action
         </a>
-        <a href="#events" class="neo-brutalist-interactive bg-[#fbcfe8] px-6 py-3 text-xl font-bold uppercase -rotate-1">
-          📅 Events
+        <a href="#map" class="neo-brutalist-interactive bg-[#bfdbfe] px-6 py-3 text-xl font-bold uppercase rotate-1">
+          🗺️ Sentiment Map
         </a>
+        <!-- <a href="#events" class="neo-brutalist-interactive bg-[#fbcfe8] px-6 py-3 text-xl font-bold uppercase -rotate-1">
+          📅 Events
+        </a> -->
       </div>
-    </div>
-  </section>
-
-  <!-- Interactive Map Section -->
-  <section id="map" class="scroll-mt-24 mb-16">
-    <div class="mb-8 text-center">
-      <h2 class="text-4xl font-extrabold font-mono uppercase bg-[#bfdbfe] inline-block px-4 py-2 border-4 border-black rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Sentiment Map</h2>
-      <p class="text-xl font-bold mt-4 text-black bg-white inline-block px-4 py-2 border-2 border-black -rotate-2">
-        Use the tools on the map to drop a pin or draw a line highlighting areas that need improvement or are working well.
-      </p>
-    </div>
-    
-    <div class="neo-brutalist bg-slate-100 overflow-hidden">
-      <Map />
     </div>
   </section>
 
   <!-- Take Action Section -->
   <section id="action" class="scroll-mt-24 mb-16">
     <div class="mb-8 text-center">
-      <h2 class="text-4xl font-extrabold font-mono uppercase bg-[#bbf7d0] inline-block px-4 py-2 border-4 border-black rotate-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Take Action</h2>
+      <h2 class="text-4xl font-extrabold font-mono uppercase bg-[#bbf7d0] inline-block px-4 py-2 border-4 border-black rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Take Action</h2>
       <p class="text-xl font-bold mt-4 text-black bg-white inline-block px-4 py-2 border-2 border-black -rotate-1">
         Make your voice heard. Send emails to local officials regarding these ongoing campaigns.
       </p>
@@ -136,8 +122,22 @@ const campaigns = Object.values(
     </div>
   </section>
 
+  <!-- Interactive Map Section -->
+  <section id="map" class="scroll-mt-24 mb-16">
+    <div class="mb-8 text-center">
+      <h2 class="text-4xl font-extrabold font-mono uppercase bg-[#bfdbfe] inline-block px-4 py-2 border-4 border-black rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Sentiment Map</h2>
+      <p class="text-xl font-bold mt-4 text-black bg-white inline-block px-4 py-2 border-2 border-black -rotate-1">
+        Don't want to send an email? Use the tools on the map to drop a pin or draw a line highlighting areas that need improvement or are working well.
+      </p>
+    </div>
+    
+    <div class="neo-brutalist bg-slate-100 overflow-hidden">
+      <Map />
+    </div>
+  </section>
+
   <!-- Events Section -->
-  <section id="events" class="scroll-mt-24 mb-16">
+  <!-- <section id="events" class="scroll-mt-24 mb-16">
     <div class="mb-8 text-center">
       <h2 class="text-4xl font-extrabold font-mono uppercase bg-[#fbcfe8] inline-block px-4 py-2 border-4 border-black -rotate-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Upcoming Events</h2>
       <p class="text-xl font-bold mt-4 text-black bg-white inline-block px-4 py-2 border-2 border-black rotate-1">
@@ -176,7 +176,7 @@ const campaigns = Object.values(
         </a>
       </div>
     </div>
-  </section>
+  </section> -->
 </Layout>
 
 <script>
