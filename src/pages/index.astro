@@ -24,13 +24,13 @@ const campaigns = Object.values(
   <section class="neo-brutalist bg-[#ffe4e6] p-8 md:p-12 mb-16 md:rotate-1 relative mt-8">
     <div class="text-center">
       <h1 class="text-5xl md:text-7xl font-extrabold mb-6 uppercase tracking-tight font-mono text-black leading-tight">
-        Allston-Brighton<br/>Active Streets
+        Allston-Brighton<br/>Mobility Hub
       </h1>
       <p class="text-2xl font-bold text-black max-w-2xl mx-auto bg-[#fef08a] inline-block px-4 py-2 border-2 border-black -rotate-1 mb-6">
-        Safer streets, vibrant spaces, a connected community
+        Safer streets, vibrant spaces, connected community
       </p>
       <p class="text-lg text-black max-w-2xl mx-auto mt-4 mb-8 font-medium bg-white p-4 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        We are a grassroots, community-driven movement working to radically improve walking, rolling, biking, and transit in our neighborhood. Get involved, share your voice, and help us transform our streets!
+        Working to improve walking, rolling, biking, and transit in our neighborhood. Get involved, share your voice, and help us transform our streets!
       </p>
       
       <div class="flex flex-wrap justify-center gap-6 mt-8">
@@ -75,45 +75,39 @@ const campaigns = Object.values(
 
             <div class="mt-auto flex flex-col gap-3 border-t-4 border-black pt-6">
               <!-- To Field -->
-              <div class="bg-black text-white p-3 md:p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
-                <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
-                  <div class="text-sm font-bold text-[#39ff14] uppercase tracking-wide font-mono shrink-0 sm:w-24 pt-1 sm:pt-0.5">To:</div>
-                  <div class="font-mono text-sm whitespace-pre-wrap break-words pt-0.5 grow">{campaign.frontmatter.target_emails}</div>
-                </div>
+              <div class="bg-black text-white p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] flow-root">
                 <button 
-                  class="copy-btn absolute top-3 right-3 md:top-4 md:right-4 w-[72px] bg-black text-[#39ff14] border-2 border-[#39ff14] py-1 text-center font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
+                  class="copy-btn float-right ml-4 mb-2 w-[72px] bg-black text-[#39ff14] border-2 border-[#39ff14] py-1 text-center font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
                   data-copy={campaign.frontmatter.target_emails}
                 >
                   Copy
                 </button>
+                <div class="text-sm font-bold text-[#39ff14] uppercase tracking-wide font-mono sm:absolute sm:left-4 sm:top-4 sm:w-20 pt-1 sm:pt-0">To:</div>
+                <div class="font-mono text-sm whitespace-pre-wrap break-words sm:ml-24">{campaign.frontmatter.target_emails}</div>
               </div>
 
               <!-- Subject Field -->
-              <div class="bg-black text-white p-3 md:p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
-                <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
-                  <div class="text-sm font-bold text-[#39ff14] uppercase tracking-wide font-mono shrink-0 sm:w-24 pt-1 sm:pt-0.5">Subject:</div>
-                  <div class="font-mono text-sm whitespace-pre-wrap break-words pt-0.5 grow">{campaign.frontmatter.email_subject}</div>
-                </div>
+              <div class="bg-black text-white p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] flow-root">
                 <button 
-                  class="copy-btn absolute top-3 right-3 md:top-4 md:right-4 w-[72px] bg-black text-[#39ff14] border-2 border-[#39ff14] py-1 text-center font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
+                  class="copy-btn float-right ml-4 mb-2 w-[72px] bg-black text-[#39ff14] border-2 border-[#39ff14] py-1 text-center font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
                   data-copy={campaign.frontmatter.email_subject}
                 >
                   Copy
                 </button>
+                <div class="text-sm font-bold text-[#39ff14] uppercase tracking-wide font-mono sm:absolute sm:left-4 sm:top-4 sm:w-20 pt-1 sm:pt-0">Subject:</div>
+                <div class="font-mono text-sm whitespace-pre-wrap break-words sm:ml-24">{campaign.frontmatter.email_subject}</div>
               </div>
 
               <!-- Message Field -->
-              <div class="bg-black text-white p-3 md:p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] mt-1">
-                <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
-                  <div class="text-sm font-bold text-[#39ff14] uppercase tracking-wide font-mono shrink-0 sm:w-24 pt-1 sm:pt-0.5">Message:</div>
-                  <div class="font-mono text-sm whitespace-pre-wrap break-words pt-0.5 grow">{campaign.frontmatter.email_body}</div>
-                </div>
+              <div class="bg-black text-white p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] mt-1 flow-root">
                 <button 
-                  class="copy-btn absolute top-3 right-3 md:top-4 md:right-4 w-[72px] bg-black text-[#39ff14] border-2 border-[#39ff14] py-1 text-center font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
+                  class="copy-btn float-right ml-4 mb-2 w-[72px] bg-black text-[#39ff14] border-2 border-[#39ff14] py-1 text-center font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
                   data-copy={campaign.frontmatter.email_body}
                 >
                   Copy
                 </button>
+                <div class="text-sm font-bold text-[#39ff14] uppercase tracking-wide font-mono sm:absolute sm:left-4 sm:top-4 sm:w-20 pt-1 sm:pt-0">Message:</div>
+                <div class="font-mono text-sm whitespace-pre-wrap break-words sm:ml-24">{campaign.frontmatter.email_body}</div>
               </div>
             </div>
           </div>
@@ -127,7 +121,7 @@ const campaigns = Object.values(
     <div class="mb-8 text-center">
       <h2 class="text-4xl font-extrabold font-mono uppercase bg-[#bfdbfe] inline-block px-4 py-2 border-4 border-black rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Sentiment Map</h2>
       <p class="text-xl font-bold mt-4 text-black bg-white inline-block px-4 py-2 border-2 border-black -rotate-1">
-        Don't want to send an email? Use the tools on the map to drop a pin or draw a line highlighting areas that need improvement or are working well.
+        Don't want to send an email? Use the tools on the map to drop a pin or draw a line highlighting areas that need improvement or are working well. The site admin will review all submissions and may share them with the city!
       </p>
     </div>
     
