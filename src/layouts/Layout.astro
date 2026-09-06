@@ -1,27 +1,33 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Allston-Brighton Active Streets</title>
-	</head>
-	<body class="min-h-screen flex flex-col bg-dot-pattern text-slate-900 font-sans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Allston-Brighton Active Streets</title>
+  </head>
+  <body
+    class="min-h-screen flex flex-col bg-dot-pattern text-slate-900 font-sans"
+  >
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-8 w-full space-y-16">
+      <slot />
+    </main>
 
-		<main class="flex-grow max-w-5xl mx-auto px-4 py-8 w-full space-y-16">
-			<slot />
-		</main>
-
-		<footer class="bg-white border-t border-slate-200 mt-auto">
-			<div class="max-w-5xl mx-auto px-4 py-6 text-center text-sm text-slate-500">
-				<p>A community-driven transportation advocacy project for Allston-Brighton, Boston.</p>
-			</div>
-		</footer>
-	</body>
+    <footer class="bg-white border-t border-slate-200 mt-auto">
+      <div
+        class="max-w-5xl mx-auto px-4 py-6 text-center text-sm text-slate-500"
+      >
+        <p>
+          A community-driven transportation advocacy project for
+          Allston-Brighton in Boston.
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>

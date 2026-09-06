@@ -29,3 +29,43 @@
   background-image: radial-gradient(circle, rgba(0, 0, 0, 0.06) 1.5px, transparent 2px);
   background-size: 24px 24px;
 }
+
+/* Custom DIY Prose Styles for Markdown Content */
+.diy-prose p {
+  margin-bottom: 1rem;
+}
+.diy-prose p:last-child {
+  margin-bottom: 0;
+}
+.diy-prose a {
+  background-color: #fef08a;
+  border-bottom: 2px solid #000;
+  font-weight: 800;
+  text-decoration: none;
+}
+.diy-prose a:hover {
+  background-color: #000;
+  color: #fff;
+}
+.diy-prose ul {
+  list-style-type: none;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.diy-prose ul li {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+.diy-prose ul li::before {
+  content: "►";
+  position: absolute;
+  left: -1.5rem;
+  color: #000;
+  font-size: 0.8em;
+  top: 0.2rem;
+}
+.diy-prose strong {
+  font-weight: 900;
+  background-color: #bfdbfe;
+  padding: 0 4px;
+}

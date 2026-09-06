@@ -5,12 +5,12 @@ import Map from "../components/Map.astro";
 interface Campaign {
   frontmatter: {
     title: string;
-    description: string;
     deadline?: string;
     target_emails: string;
     email_subject: string;
     email_body: string;
   };
+  Content: any;
 }
 
 // Fetch all campaigns from markdown files
@@ -48,15 +48,15 @@ const campaigns = Object.values(
   </section>
 
   <!-- Interactive Map Section -->
-  <section id="map" class="scroll-mt-24 neo-brutalist bg-white p-6 md:p-8 mb-16">
-    <div class="flex flex-col mb-6 border-b-4 border-black pb-4">
-      <h2 class="text-4xl font-extrabold font-mono uppercase bg-[#fef08a] inline-block self-start px-2 py-1 border-2 border-black rotate-1 mb-2">Sentiment Map</h2>
-      <p class="text-lg font-medium text-black">
+  <section id="map" class="scroll-mt-24 mb-16">
+    <div class="mb-8 text-center">
+      <h2 class="text-4xl font-extrabold font-mono uppercase bg-[#bfdbfe] inline-block px-4 py-2 border-4 border-black rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Sentiment Map</h2>
+      <p class="text-xl font-bold mt-4 text-black bg-white inline-block px-4 py-2 border-2 border-black -rotate-2">
         Use the tools on the map to drop a pin or draw a line highlighting areas that need improvement or are working well.
       </p>
     </div>
     
-    <div class="border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-slate-100 overflow-hidden">
+    <div class="neo-brutalist bg-slate-100 overflow-hidden">
       <Map />
     </div>
   </section>
@@ -72,12 +72,14 @@ const campaigns = Object.values(
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
-        campaigns.map((campaign, index) => (
+        campaigns.map((campaign, index) => {
+          const Content = campaign.Content;
+          return (
           <div class="neo-brutalist p-6 bg-white flex flex-col">
             <h3 class="text-2xl font-extrabold mb-3 font-mono uppercase border-b-2 border-black pb-2">{campaign.frontmatter.title}</h3>
-            <p class="mb-6 grow text-lg font-medium">
-              {campaign.frontmatter.description}
-            </p>
+            <div class="diy-prose mb-6 grow text-lg font-medium text-black">
+              <Content />
+            </div>
 
             {campaign.frontmatter.deadline && (
               <p class="text-lg font-bold bg-[#fecaca] inline-block self-start px-2 py-1 border-2 border-black mb-6">
@@ -85,14 +87,31 @@ const campaigns = Object.values(
               </p>
             )}
 
-            <a
-              href={`mailto:${campaign.frontmatter.target_emails}?subject=${encodeURIComponent(campaign.frontmatter.email_subject)}&body=${encodeURIComponent(campaign.frontmatter.email_body)}`}
-              class="neo-brutalist-interactive inline-block text-center bg-black text-white px-6 py-3 text-lg font-bold uppercase hover:bg-slate-800"
-            >
-              Send Pre-filled Email ✉️
-            </a>
+            <div class="mt-auto flex flex-col gap-4 border-t-4 border-black pt-6">
+              <div class="bg-black text-white p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
+                <p class="text-sm font-bold text-[#39ff14] mb-2 uppercase tracking-wide font-mono">To:</p>
+                <div class="font-mono text-sm whitespace-pre-wrap break-words">{campaign.frontmatter.target_emails}</div>
+                <button 
+                  class="copy-btn absolute top-3 right-3 bg-black text-[#39ff14] border-2 border-[#39ff14] px-3 py-1 font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
+                  data-copy={campaign.frontmatter.target_emails}
+                >
+                  Copy
+                </button>
+              </div>
+
+              <div class="bg-black text-white p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
+                <p class="text-sm font-bold text-[#39ff14] mb-2 uppercase tracking-wide font-mono">Message:</p>
+                <div class="font-mono text-sm whitespace-pre-wrap break-words">{campaign.frontmatter.email_body}</div>
+                <button 
+                  class="copy-btn absolute top-3 right-3 bg-black text-[#39ff14] border-2 border-[#39ff14] px-3 py-1 font-bold text-xs uppercase hover:bg-[#39ff14] hover:text-black transition-colors"
+                  data-copy={campaign.frontmatter.email_body}
+                >
+                  Copy
+                </button>
+              </div>
+            </div>
           </div>
-        ))
+        )})
       }
     </div>
   </section>
@@ -139,3 +158,22 @@ const campaigns = Object.values(
     </div>
   </section>
 </Layout>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const textToCopy = button.getAttribute('data-copy');
+      if (textToCopy) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalText = button.textContent;
+          button.textContent = 'Copied!';
+          button.classList.add('bg-[#39ff14]', 'text-black');
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.classList.remove('bg-[#39ff14]', 'text-black');
+          }, 2000);
+        });
+      }
+    });
+  });
+</script>
