@@ -1,4 +1,5 @@
 ---
+import { SEO } from "astro-seo";
 import "../styles/global.css";
 ---
 
@@ -10,7 +11,24 @@ import "../styles/global.css";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>Allston-Brighton Active Streets</title>
+    <SEO
+      title="Allston-Brighton Mobility Hub"
+      description="Safe streets, vibrant spaces, connected community. A grassroots transportation advocacy project for Allston-Brighton."
+      openGraph={{
+        basic: {
+          title: "Allston-Brighton Mobility Hub",
+          type: "website",
+          image: "/og-image.png",
+        },
+      }}
+      twitter={{
+        card: "summary_large_image",
+        title: "Allston-Brighton Mobility Hub",
+        description:
+          "Safe streets, vibrant spaces, connected community. A grassroots transportation advocacy project for Allston-Brighton.",
+        image: "/og-image.png",
+      }}
+    />
   </head>
   <body
     class="min-h-screen flex flex-col bg-dot-pattern text-slate-900 font-sans"
