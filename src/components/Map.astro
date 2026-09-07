@@ -78,8 +78,8 @@ import "maplibre-gl-draw/dist/mapbox-gl-draw.css";
   import MapboxDraw from 'maplibre-gl-draw';
   import { supabase } from '../lib/supabase';
 
-  // @ts-ignore - Vite will bundle the worker as a static asset URL
-  import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
+  // @ts-ignore - Vite will bundle the worker and its dependencies as a static asset URL
+  import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
   maplibregl.setWorkerUrl(workerUrl);
 
   let currentFeature: any = null;
